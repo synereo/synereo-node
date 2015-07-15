@@ -8,4 +8,14 @@ Install and be familiar with [Docker](https://docs.docker.com/userguide/). On OS
 
 ## Architecture
 
-Synereo nodes have two main official Docker images as dependencies: [RabbitMQ](https://registry.hub.docker.com/_/rabbitmq/) and [MongoDB](https://registry.hub.docker.com/_/mongo/). The rest of the Synereo stack that ties it all together is provided via the `synereo` image in this repo.
+### Dependencies
+
+Synereo nodes have two official Docker images as dependencies: [RabbitMQ](https://registry.hub.docker.com/_/rabbitmq/) and [MongoDB](https://registry.hub.docker.com/_/mongo/).
+
+### Synereo Image
+
+The Synereo image is built from [synereo/Dockerfile](synereo/Dockerfile). For full flexibility, instead of building on existing images we install all the dependencies ourselves, but we rely on much of the good code from these repos:
+
+ - https://registry.hub.docker.com/_/java/
+ - https://registry.hub.docker.com/u/williamyeh/scala/
+ - https://registry.hub.docker.com/u/williamyeh/sbt/
