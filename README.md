@@ -19,3 +19,21 @@ The Synereo image is built from [synereo/Dockerfile](synereo/Dockerfile). For fu
  - https://registry.hub.docker.com/_/java/
  - https://registry.hub.docker.com/u/williamyeh/scala/
  - https://registry.hub.docker.com/u/williamyeh/sbt/
+
+## Usage
+
+Start off by building the image:
+
+```bash
+$ cd synereo
+$ docker build -t synereo/synereo:v0 .
+```
+
+Once the image is created you can run stuff in it, e.g. to get a bash prompt and check the versions, run:
+
+```bash
+$ docker run -it synereo/synereo:v0 /bin/bash
+root@1122aabb3344ccdd# java -version
+root@1122aabb3344ccdd# scala -version
+root@1122aabb3344ccdd# sbt -version
+```
