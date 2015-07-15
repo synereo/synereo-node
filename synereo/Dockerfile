@@ -8,7 +8,10 @@ ENV SCALA_VERSION 2.10.5
 ENV SCALA_FILENAME scala-$SCALA_VERSION.deb
 ENV SCALA_DEBPATH http://downloads.typesafe.com/scala/$SCALA_VERSION/$SCALA_FILENAME
 
-RUN apt-get update && apt-get install -y wget openjdk-7-jdk="$JAVA_DEBIAN_VERSION"
+RUN apt-get update && apt-get install -y \
+	wget \
+	openjdk-7-jdk="$JAVA_DEBIAN_VERSION" \
+	libjansi-java
 
 RUN wget $SCALA_DEBPATH
 RUN dpkg -i $SCALA_FILENAME
