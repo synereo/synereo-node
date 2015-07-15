@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 	openjdk-7-jdk="$JAVA_DEBIAN_VERSION" \
 	libjansi-java
 
-RUN wget $SCALA_DEBPATH
+RUN wget -q $SCALA_DEBPATH
 RUN dpkg -i $SCALA_FILENAME
 RUN rm -f $SCALA_FILENAME
 
