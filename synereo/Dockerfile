@@ -14,7 +14,7 @@ ENV SBT_JAR https://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-la
 
 ENV STRATEGIES_VERSION master
 ENV STRATEGIES_FILENAME $STRATEGIES_VERSION.tar.gz
-ENV STRATEGIES_TAR https://github.com/leithaus/strategies/archive/
+ENV STRATEGIES_TAR https://github.com/leithaus/strategies/archive/$STRATEGIES_FILENAME
 
 # Install some JDK7 and some dependencies, then cleanup
 RUN apt-get update && apt-get install -y \
