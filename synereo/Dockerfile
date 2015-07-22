@@ -38,8 +38,9 @@ RUN echo "==> Fetching all sbt jars from Maven repo" && \
     sbt
 
 # Install Strategies
-RUN mkdir /app && cd /app
-RUN wget $STRATEGIES_TAR && tar -zxvf $STRATEGIES_FILENAME && cd strategies-master
+RUN mkdir /app
+RUN wget $STRATEGIES_TAR && tar -zxvf $STRATEGIES_FILENAME -C /app
 RUN echo "==> Building strategies" && \
 	echo "==> This will take an unreasonable amount of time :/ sorry..." && \
+	cd /app/strategies-master && \
 	sbt clean compile
