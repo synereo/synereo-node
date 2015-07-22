@@ -39,7 +39,7 @@ RUN echo "==> Fetching all sbt jars from Maven repo" && \
 
 # Install Strategies
 RUN mkdir /app
-RUN wget $STRATEGIES_TAR && tar -zxvf $STRATEGIES_FILENAME -C /app
+RUN cd /app && wget $STRATEGIES_TAR && tar -zxvf $STRATEGIES_FILENAME
 RUN echo "==> Building strategies" && \
 	echo "==> This will take an unreasonable amount of time :/ sorry..." && \
 	cd /app/strategies-master && \
