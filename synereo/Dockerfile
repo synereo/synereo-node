@@ -12,6 +12,10 @@ ENV SCALA_DEBPATH http://downloads.typesafe.com/scala/$SCALA_VERSION/$SCALA_FILE
 ENV SBT_VERSION 0.13.8
 ENV SBT_JAR https://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/$SBT_VERSION/sbt-launch.jar
 
+ENV STRATEGIES_VERSION master
+ENV STRATEGIES_FILENAME $STRATEGIES_VERSION.tar.gz
+ENV STRATEGIES_TAR https://github.com/leithaus/strategies/archive/
+
 # Install some JDK7 and some dependencies, then cleanup
 RUN apt-get update && apt-get install -y \
     wget \
@@ -32,3 +36,10 @@ RUN chmod u+x /usr/bin/sbt
 RUN echo "==> Fetching all sbt jars from Maven repo" && \
     echo "==> This will take a while..." && \
     sbt
+
+# Install Strategies
+RUN mkdir /app && cd /app
+RUN wget $STRATEGIES_TAR && tar -zxvf $STRATEGIES_FILENAME && cd strategies-master
+RUN echo "==> Building strategies" && \
+	echo "==> This will take an unreasonable amount of time :/ sorry..." && \
+	sbt clean compile
