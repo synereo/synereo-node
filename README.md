@@ -22,7 +22,13 @@ The Synereo image is built from [synereo/Dockerfile](synereo/Dockerfile). For fu
 
 ## Usage
 
-Start off by building the image:
+For most uses, you can just grab the image off of the Docker registry, located at [https://registry.hub.docker.com/u/synereo/synereo/](https://registry.hub.docker.com/u/synereo/synereo/). Using Docker you can just:
+
+```bash
+$ docker pull synereo/synereo
+```
+
+Alternatively, you can build the image yourself, but note that building can take up to 30-40 minutes (SBT be damned):
 
 ```bash
 $ cd synereo
