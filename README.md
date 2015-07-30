@@ -32,13 +32,13 @@ Alternatively, you can build the image yourself, but note that building can take
 
 ```bash
 $ cd synereo
-$ docker build -t synereo/synereo:v0 .
+$ docker build -t synereo/synereo .
 ```
 
 Once the image is created you can run stuff in it, e.g. to get a bash prompt and check the versions, run:
 
 ```bash
-$ docker run -it synereo/synereo:v0 /bin/bash
+$ docker run -it synereo/synereo /bin/bash
 root@1122aabb3344ccdd# java -version
 root@1122aabb3344ccdd# scala -version
 root@1122aabb3344ccdd# sbt -version
