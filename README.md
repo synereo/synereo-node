@@ -54,3 +54,19 @@ $ docker run -d --hostname rabbit2 --name test-rabbit2 -e RABBIT_ERLANG_COOKIE='
 ```
 
 When attempting to run this test on two separate hosts (either on the LAN or the WAN) you *must* expose the RabbitMQ port by using the `-p 5672:5672` option, in addition to any further firewall configurations on both hosts.
+
+In two separate terminals, launch one Synereo process each:
+
+```bash
+$ docker run --name synereo1 --link test-rabbit1:rabbit -it synereo/synereo /bin/bash  # terminal 1
+$ docker run --name synereo2 --link test-rabbit2:rabbit -it synereo/synereo /bin/bash  # terminal 2
+```
+
+In each shell, take note of the RabbitMQ connection string, then launch the `sbt console`:
+
+```bash
+$ echo RABBIT_PORT
+tcp://172.17.0.9:5672  # YMMV
+$ cd /app/strategies-master
+$ sbt console
+```
