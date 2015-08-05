@@ -53,4 +53,4 @@ $ docker run -d --hostname rabbit1 --name test-rabbit1 -e RABBIT_ERLANG_COOKIE='
 $ docker run -d --hostname rabbit2 --name test-rabbit2 -e RABBIT_ERLANG_COOKIE='s3cr3t' rabbitmq
 ```
 
-When attempting to run this test on you *must* expose the RabbitMQ port by using the `-p 5672:5672` option, in addition to any further firewall configurations on both hosts.
+When attempting to run this test on two separate hosts (either on the LAN or the WAN) you *must* expose the RabbitMQ port by using the `-p 5672:5672` option, in addition to any further firewall configurations on both hosts.
