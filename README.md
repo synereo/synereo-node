@@ -66,7 +66,32 @@ In each shell, take note of the RabbitMQ connection string, then launch the `sbt
 
 ```bash
 $ echo RABBIT_PORT
-tcp://172.17.0.9:5672  # YMMV
+tcp://172.17.0.1:5672  # YMMV
 $ cd /app/strategies-master
 $ sbt console
 ```
+
+In each console, run the following commands:
+
+```scala
+scala> import java.net.URI
+scala> import com.biosimilarity.lift.lib._
+scala> import _root_.com.rabbitmq.client.{Channel=>RabbitChan, _}
+scala> val srcHost1 = new URI( "amqp://guest:guest@172.17.0.1:5672/synereo" )
+scala> val trgtHost1 = new URI( "amqp://guest:guest@172.17.0.2:5672/synereo" )
+```
+
+Make sure to use the right source and target IPs, and to flip them on the other console. Then, in one console run:
+
+```scala
+scala> setupAndRunTest( true, srcHost1, trgtHost1, "synereo1", true, 10 )
+```
+
+While running this line in the other:
+
+```scala
+scala> setupAndRunTest( false, srcHost1, trgtHost1, "synereo1", true, 10 )
+```
+
+If all went well, you should see a successful test summary ending with `Test successful.`.
+
