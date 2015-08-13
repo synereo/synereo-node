@@ -76,6 +76,7 @@ In each console, run the following commands:
 ```scala
 scala> import java.net.URI
 scala> import com.biosimilarity.lift.lib._
+scala> import com.biosimilarity.lift.lib.usage.AMQPTPSample._
 scala> import _root_.com.rabbitmq.client.{Channel=>RabbitChan, _}
 scala> val srcHost1 = new URI( "amqp://guest:guest@172.17.0.1:5672/synereo" )
 scala> val trgtHost1 = new URI( "amqp://guest:guest@172.17.0.2:5672/synereo" )
