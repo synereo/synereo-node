@@ -49,8 +49,8 @@ root@1122aabb3344ccdd# sbt -version
 Integration testing for the RabbitMQ connections can be done by following these steps on a single host:
 
 ```bash
-$ docker run -d --hostname rabbit1 --name rabbit1 -e RABBIT_ERLANG_COOKIE='s3cr3t' -p 5672:5672 rabbitmq
-$ docker run -d --hostname rabbit2 --name rabbit2 -e RABBIT_ERLANG_COOKIE='s3cr3t' -p 5673:5672 rabbitmq
+$ docker run -d --hostname rabbit1 --name rabbit1 -e RABBIT_ERLANG_COOKIE='s3cr3t' -p 5672:5672 -p 15672:15672 rabbitmq
+$ docker run -d --hostname rabbit2 --name rabbit2 -e RABBIT_ERLANG_COOKIE='s3cr3t' -p 5673:5672 -p 15673:15672 rabbitmq
 ```
 
 When attempting to run this test on two separate hosts (either on the LAN or the WAN) you *must* expose the RabbitMQ port by using the `-p 5672:5672` option, in addition to any further firewall configurations on both hosts. Note that we use port 5673 on the second instance (if it's located on the same host).
