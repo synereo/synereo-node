@@ -3,96 +3,67 @@
 Dockerfiles for easily setting up a Synereo node.
 
 ## Prerequisites
+  - git client installed and git command in path
+  - docker installed (https://www.docker.com/) and running (start Docker Quick Terminal. Make a note of the default IP address assigned when starting up Docker and for example, default IP address may be 192.168.99.100). Using  [Kitematic](https://docs.docker.com/kitematic/) is very helpful. On Linuxes with modern kernels, such as Arch Linux, you can just use plain [Docker](https://wiki.archlinux.org/index.php/Docker)
+  - mongodb running version: 2.6.4 (https://www.mongodb.com/) but it worked with the latest version
+  - rabbitmq running version: 3.0.2 erlang version : 5.9.1 (15B03) (http://www.rabbitmq.com/) but works with the latest version by editing rabbitmq.config file (add this entry [{rabbit, [{loopback_users, []}]}] )
 
-Install and be familiar with [Docker](https://docs.docker.com/userguide/). On OS X or Windows you'll probably want to use [Kitematic](https://docs.docker.com/kitematic/). On Linuxes with modern kernels, such as Arch Linux, you can just use plain [Docker](https://wiki.archlinux.org/index.php/Docker).
+## Source files
+Download files in a directory of your choice to build Docker image and make sure docker is running and available: 
 
-## Architecture
+    1. git clone https://github.com/n10n/DockerNode.git SpliciousBKND
 
-### Dependencies
+## Build docker image using: 
+Run the following command 
 
-Synereo nodes have two official Docker images as dependencies: [RabbitMQ](https://registry.hub.docker.com/_/rabbitmq/) and [MongoDB](https://registry.hub.docker.com/_/mongo/).
+    2a. cd SpliciousBKND
+    2b. docker build -t spliciousbkendimage . 
 
-### Synereo Image
+  Use "spliciousbkendimage" as image name in subsequent steps where image id is required. You can use any image name but it must be all lowercase. If step 2b failed for some reason, try to run (docker build .) and make a note of the Image ID and follow either manual or automated process step 3a
+ 
+## Run docker image - manual process: 
 
-The Synereo image is built from [synereo/Dockerfile](synereo/Dockerfile). For full flexibility, instead of building on existing images we install all the dependencies ourselves, but we rely on much of the good code from these repos:
+    3a. docker run -i -t -e MONGODB_HOST=IP_ADDRESS -e MONGODB_PORT=27017 --name SpliciousBKEND -p 8888:9876 [ImageIDFromBuildStep_2b] /bin/bash
+  
+At the # command prompt
+    
+    3b. cd /usr/local/splicious
+    3c. ./splicious.sh start
+  
+## Run docker image - automated process: 
 
- - https://registry.hub.docker.com/_/java/
- - https://registry.hub.docker.com/u/williamyeh/scala/
- - https://registry.hub.docker.com/u/williamyeh/sbt/
+    3a. docker run -i -t -e MONGODB_HOST=IP_ADDRESS -e MONGODB_PORT=27017 \
+              --name SpliciousBKEND -p 8888:9876 [ImageIDFromBuildStep_2b] \
+              /usr/local/splicious/run.sh
+  
+Please replace the IP_ADDRESS appropriately. To see log files, go to /usr/local/splicious/logs folder.
 
-## Usage
+## Access container:
 
-For most uses, you can just grab the image off of the Docker registry, located at [https://registry.hub.docker.com/u/synereo/synereo/](https://registry.hub.docker.com/u/synereo/synereo/). Using Docker you can just:
+Visit the webpage http://<docker_quick_terminal_assigned_IP>:8888/agentui/agentui.html?demo=false and if this don't work then find the mapping URL (ipaddress:port from Kitematic screen - select your container there i.e. SpliciousBKEND). For example, you may see the map like 192.168.99.100:32772 then the URL would be http://192.168.99.100:32772/agentui/agentui.html?demo=false or http://192.168.99.100:8888/agentui/agentui.html?demo=false
 
-```bash
-$ docker pull synereo/synereo
-```
+See screenshot 
+https://drive.google.com/open?id=0B1NrzDY6kx1JTzdPNVFlU19xekk
 
-Alternatively, you can build the image yourself, but note that building can take up to 30-40 minutes (SBT be damned):
+## Other notes:
 
-```bash
-$ cd synereo
-$ docker build -t synereo/synereo .
-```
+Running with MongoDB as a linked node - follow the commands below (assuming mongo image is already installed) :
 
-Once the image is created you can run stuff in it, e.g. to get a bash prompt and check the versions, run:
+    docker run -it --name mdb1 -p 27017:27017 -d mongo
+    docker run --name snode2 --link mdb1:mongo -e MONGODB_HOST=<Replace_192.168.99.100> -e MONGODB_PORT=27017  -p 8888:9876 -it spliciousbkendimage /bin/bash
 
-```bash
-$ docker run -it synereo/synereo /bin/bash
-root@1122aabb3344ccdd# java -version
-root@1122aabb3344ccdd# scala -version
-root@1122aabb3344ccdd# sbt -version
-```
+To access UI from outside of the docker host, you would need to map the dockerhost ip/port to docker guest ip/port in Virtual Box (Network -> Port Forwarding) by adding rules.
 
-### Testing
+To save a container to be used as an image
 
-Integration testing for the RabbitMQ connections can be done by following these steps on a single host:
+    docker commit [container_id] [name_in_lowercase]
 
-```bash
-$ docker run -d --hostname rabbit1 --name rabbit1 -e RABBIT_ERLANG_COOKIE='s3cr3t' -p 5672:5672 -p 15672:15672 rabbitmq
-$ docker run -d --hostname rabbit2 --name rabbit2 -e RABBIT_ERLANG_COOKIE='s3cr3t' -p 5673:5672 -p 15673:15672 rabbitmq
-```
+To save an image to use in different docker installation
 
-When attempting to run this test on two separate hosts (either on the LAN or the WAN) you *must* expose the RabbitMQ port by using the `-p 5672:5672` option, in addition to any further firewall configurations on both hosts. Note that we use port 5673 on the second instance (if it's located on the same host).
+    docker save [name_in_lowercase] > [directory_location_to_save]/[image_name].tar
 
-In two separate terminals, launch one Synereo process each:
+To load an image created in different docker installation 
 
-```bash
-$ docker run --name synereo1 --link rabbit1:rabbit -it synereo/synereo /bin/bash  # terminal 1
-$ docker run --name synereo2 --link rabbit2:rabbit -it synereo/synereo /bin/bash  # terminal 2
-```
+    docker load < [image_name].tar
 
-In each shell, take note of the RabbitMQ connection string, then launch the `sbt console`:
-
-```bash
-$ echo RABBIT_PORT
-tcp://172.17.0.1:5672  # YMMV
-$ cd /app/strategies-master
-$ sbt console
-```
-
-In each console, run the following commands:
-
-```scala
-scala> import java.net.URI
-scala> import com.biosimilarity.lift.lib._
-scala> import com.biosimilarity.lift.lib.usage.AMQPTPSample._
-scala> import _root_.com.rabbitmq.client.{Channel=>RabbitChan, _}
-scala> val srcHost1 = new URI( "amqp://guest:guest@172.17.0.1:5672/synereo" )
-scala> val trgtHost1 = new URI( "amqp://guest:guest@172.17.0.2:5672/synereo" )
-```
-
-Make sure to use the right source and target IPs, and to flip them on the other console. Then, in one console run:
-
-```scala
-scala> setupAndRunTest( true, srcHost1, trgtHost1, "synereo1", true, 10 )
-```
-
-While running this line in the other:
-
-```scala
-scala> setupAndRunTest( false, srcHost1, trgtHost1, "synereo1", true, 10 )
-```
-
-If all went well, you should see a successful test summary ending with `Test successful.`.
-
+Running with the latest RabbitMQ version - edit rabbitmq.config file by adding [{rabbit, [{loopback_users, []}]}] to provide "guest" user access. This file mostly will be non existent and read more about access control [here](https://www.rabbitmq.com/access-control.html)
