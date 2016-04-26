@@ -11,7 +11,7 @@ Dockerfiles for easily setting up a Synereo node.
 ## Source files
 Download files in a directory of your choice to build Docker image and make sure docker is running and available: 
 
-    1. git clone https://github.com/n10n/DockerNode.git SpliciousBKND
+    1. git clone https://github.com/synereo/dockernode.git SpliciousBKND
 
 ## Build docker image using: 
 Run the following command 
