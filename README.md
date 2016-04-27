@@ -13,6 +13,7 @@ Download files in a directory of your choice to build Docker image and make sure
 
     1. git clone https://github.com/synereo/dockernode.git SpliciousBKND
 
+Windows users for docker host may need to run this if container is not working. "git config --global core.autocrlf false"
 ## Build docker image using: 
 Run the following command 
 
