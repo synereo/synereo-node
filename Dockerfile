@@ -1,7 +1,7 @@
 # Set the base image
 FROM alpine:3.3
 
-LABEL description="Synereo Docker Image Beta" version="0.1.1"
+LABEL description="Synereo Docker Image Beta" version="0.1.2"
 MAINTAINER N<ns68751+dockerfile@gmail.com>
 
 ENV DEPLOYMENT_MODE colocated
@@ -20,6 +20,7 @@ ENV MONGODB_PORT 27017
 COPY splicious.sh $W_DIR/
 WORKDIR $W_DIR
 ADD agentui.tar.gz $W_DIR/
+#ADD m2.tar.gz /root/
 COPY entrypoint.sh $W_DIR/
 
 # Install OpenJDK 8, Maven and other software
@@ -76,6 +77,10 @@ RUN \
     chmod 755 $S_DIR/splicious.sh && \
     chmod 755 $W_DIR/entrypoint.sh && \
     \
+#    rm -rf $W_DIR/GLoSEval $W_DIR/SpecialK $W_DIR/agent-service-ati-ia && \
+#    rm -rf /root/.m2 /root/.zinc && \
+    rm -rf /var/cache/apk/* && \
+    rm -f $S_DIR/lib/junit-3.8.1.jar $S_DIR/lib/junit-4.7.jar $S_DIR/lib/scalaz-core_2.10-6.0.4.jar $S_DIR/lib/slf4j-api-1.6.1.jar && \
     rm $S_DIR/lib/*.pom && \
 #   Autostart 
 #    chmod 755 /etc/init.d/$S_CMD && \
