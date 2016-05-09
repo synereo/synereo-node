@@ -41,7 +41,7 @@ RUN \
 #    git clone -b master https://github.com/n10n/agent-service-ati-ia.git  && \
 #    git clone -b livelygig-api https://github.com/n10n/lgimporter.git GLoSEval && \
     git clone -b 1.0 https://github.com/synereo/specialk.git SpecialK && \
-    git clone -b master https://github.com/synereo/agent-service-ati-ia.git  && \
+    git clone -b 1.0 https://github.com/synereo/agent-service-ati-ia.git  && \
     git clone -b 1.0 https://github.com/synereo/gloseval.git GLoSEval && \
     \
     cd $W_DIR/SpecialK && \
@@ -51,14 +51,13 @@ RUN \
     cd $W_DIR/GLoSEval && \
     mvn -e -fn -DskipTests=true install prepare-package && \
     \
-    mkdir -p $S_DIR/src/main/resources/media && \
-    mkdir $S_DIR/lib && \
+    mkdir -p $S_DIR/lib && \
     mkdir $S_DIR/logs && \
+    mkdir $S_DIR/config && \
     cp -rP $W_DIR/SpecialK/target/lib/* $S_DIR/lib/ && \
     cp -rP $W_DIR/agent-service-ati-ia/AgentServices-Store/target/lib/* $S_DIR/lib/ && \
     cp -rP $W_DIR/GLoSEval/target/lib/* $S_DIR/lib/ && \
     cp -rP $W_DIR/GLoSEval/target/gloseval-0.1.jar $S_DIR/lib/ && \
-#    cp -rP $W_DIR/GLoSEval/target/GLoSEval-0.1.jar $S_DIR/lib/ && \
 #    echo CLASSPATH=\`find lib -name "*.jar" -exec echo -n {}: \\\;\`lib\/ >$S_DIR/run.sh && \
 #    echo java -cp \$CLASSPATH com.biosimilarity.evaluator.spray.Boot -unchecked -deprecation -encoding utf8 -usejavacp >> zexe/run.sh && \
     echo java -cp \"lib/*\" com.biosimilarity.evaluator.spray.Boot >> $S_DIR/run.sh && \
@@ -72,8 +71,6 @@ RUN \
     chmod 755 $S_DIR/splicious.sh && \
     chmod 755 $W_DIR/entrypoint.sh && \
     \
-#    cp $W_DIR/GLoSEval/src/main/resources/media/queenbee64.txt $S_DIR/src/main/resources/media  && \
-#    rm $S_DIR/lib/casbah*5.1*.jar && \
     rm $S_DIR/lib/*.pom && \
 #   Autostart 
 #    chmod 755 /etc/init.d/$S_CMD && \
