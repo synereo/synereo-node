@@ -1,9 +1,10 @@
 # Set the base image
 FROM alpine:3.3
 
-LABEL description="Synereo Docker Image Beta" version="0.1.0"
-MAINTAINER N<ns68751+n10n@gmail.com>
+LABEL description="Synereo Docker Image Beta" version="0.1.1"
+MAINTAINER N<ns68751+dockerfile@gmail.com>
 
+ENV DEPLOYMENT_MODE colocated
 ENV DSLSERVER 127.0.0.1
 ENV DSLPORT 5672
 ENV DSLEPSSERVER 127.0.0.1
@@ -32,9 +33,13 @@ RUN \
     tar -xzvf apache-maven-3.3.9-bin.tar.gz && \
     rm -f apache-maven-3.3.9-bin.tar.gz && \
     \
-    ln -s /usr/lib/jvm/java-1.8-openjdk/bin/javac /usr/bin/javac && \
-    ln -s /usr/lib/jvm/java-1.8-openjdk/bin/jar /usr/bin/jar && \
-    ln -s /usr/lib/apache-maven-3.3.9/bin/mvn /usr/bin/mvn && \
+    cd /usr/bin && \
+    ln -s ../lib/jvm/java-1.8-openjdk/bin/jar jar && \
+    ln -s ../lib/jvm/java-1.8-openjdk/bin/javac javac && \
+    ln -s ../lib/apache-maven-3.3.9/bin/mvn mvn && \
+#    ln -s /usr/lib/jvm/java-1.8-openjdk/bin/javac /usr/bin/javac && \
+#    ln -s /usr/lib/jvm/java-1.8-openjdk/bin/jar /usr/bin/jar && \
+#    ln -s /usr/lib/apache-maven-3.3.9/bin/mvn /usr/bin/mvn && \
     \
     cd $W_DIR && \
 #    git clone -b forespray https://github.com/n10n/SpecialK.git  && \
@@ -51,9 +56,7 @@ RUN \
     cd $W_DIR/GLoSEval && \
     mvn -e -fn -DskipTests=true install prepare-package && \
     \
-    mkdir -p $S_DIR/lib && \
-    mkdir $S_DIR/logs && \
-    mkdir $S_DIR/config && \
+    mkdir -p $S_DIR/lib $S_DIR/logs $S_DIR/config && \
     cp -rP $W_DIR/SpecialK/target/lib/* $S_DIR/lib/ && \
     cp -rP $W_DIR/agent-service-ati-ia/AgentServices-Store/target/lib/* $S_DIR/lib/ && \
     cp -rP $W_DIR/GLoSEval/target/lib/* $S_DIR/lib/ && \
@@ -62,7 +65,9 @@ RUN \
 #    echo java -cp \$CLASSPATH com.biosimilarity.evaluator.spray.Boot -unchecked -deprecation -encoding utf8 -usejavacp >> zexe/run.sh && \
     echo java -cp \"lib/*\" com.biosimilarity.evaluator.spray.Boot >> $S_DIR/run.sh && \
     \
-    cp $W_DIR/GLoSEval/eval.conf $S_DIR/ && \
+    cp $W_DIR/GLoSEval/eval.conf $S_DIR/config/ && \
+    cd $S_DIR && \
+    ln -s config/eval.conf eval.conf && \
     cp $W_DIR/GLoSEval/log.properties $S_DIR/ && \
     mv $W_DIR/agentui $S_DIR/ && \
     mv $W_DIR/$S_CMD $S_DIR/ && \
