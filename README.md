@@ -1,6 +1,8 @@
-# Synereo Dockerfiles
+# Synereo Backend Dockerfiles
 
-Dockerfiles for easily setting up a Synereo node.
+Dockerfiles for easily setting up a Synereo node and the following instruction are for building backend from the source code (This takes sometime to build i.e. around 30-40 minutes). If want to use existing Docker image (preferred method) then use the image from Docker hub and jump to Step 3 (Running Docker Image):
+
+  [https://hub.docker.com/r/livelygig/backend/](https://hub.docker.com/r/livelygig/backend/)
 
 ## Prerequisites
   - git client installed and git command in path
