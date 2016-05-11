@@ -1,9 +1,11 @@
 # Set the base image
 FROM alpine:3.3
 
-LABEL description="Synereo Docker Image Beta" version="0.1.2"
+LABEL description="Synereo Docker Image Beta" version="0.1.3"
 MAINTAINER N<ns68751+dockerfile@gmail.com>
 
+ENV NODEADMINEMAIL admin@localhost
+ENV NODEADMINPASS a
 ENV DEPLOYMENT_MODE colocated
 ENV DSLSERVER 127.0.0.1
 ENV DSLPORT 5672
@@ -17,11 +19,8 @@ ENV S_DIR $W_DIR/splicious
 ENV S_CMD splicious.sh
 ENV MONGODB_HOST 127.0.0.1
 ENV MONGODB_PORT 27017
-COPY splicious.sh $W_DIR/
 WORKDIR $W_DIR
-ADD agentui.tar.gz $W_DIR/
 #ADD m2.tar.gz /root/
-COPY entrypoint.sh $W_DIR/
 
 # Install OpenJDK 8, Maven and other software
 RUN \
@@ -70,12 +69,8 @@ RUN \
     cd $S_DIR && \
     ln -s config/eval.conf eval.conf && \
     cp $W_DIR/GLoSEval/log.properties $S_DIR/ && \
-    mv $W_DIR/agentui $S_DIR/ && \
-    mv $W_DIR/$S_CMD $S_DIR/ && \
-    \
-    chmod 755 $S_DIR/run.sh && \
-    chmod 755 $S_DIR/splicious.sh && \
-    chmod 755 $W_DIR/entrypoint.sh && \
+#    mv $W_DIR/agentui $S_DIR/ && \
+#    mv $W_DIR/$S_CMD $S_DIR/ && \
     \
 #    rm -rf $W_DIR/GLoSEval $W_DIR/SpecialK $W_DIR/agent-service-ati-ia && \
 #    rm -rf /root/.m2 /root/.zinc && \
@@ -87,6 +82,17 @@ RUN \
 #    ln -s /etc/init.d/$S_CMD /etc/runlevels/default/$S_CMD && \
 #    update-rc.d /etc/init.d/$S_CMD defaults && \
     cd $S_DIR/
+
+ADD agentui.tar.gz $S_DIR/
+ADD sclabin.tar.gz $S_DIR/
+COPY splicious.sh $S_DIR/
+COPY entrypoint.sh $W_DIR/
+
+RUN \
+    rm -f /usr/local/splicious/bin/._* && \
+    chmod 755 $S_DIR/run.sh && \
+    chmod 755 $S_DIR/splicious.sh && \
+    chmod 755 $W_DIR/entrypoint.sh
 
 WORKDIR $S_DIR
      
