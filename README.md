@@ -54,6 +54,8 @@ At the # prompt, run the commands below
                    --name backendNode -p 8888:9876 -d spliciousbkendimage /usr/local/splicious/run.sh
 
 ## Running a full node:
+Coming soon.
+<!----
 A full  node requires both MongoDB and RabbitMQ. It is advisable to use standalone mode for first time and then switch to full node. Please replace the IP_ADDRESS appropriately for MongoDB (in case of docker image of MongoDB, this address is accquired by docker and displays at starting of it i.e. 192.168.99.100 in Windows and Mac or locate new container in Kitemate to find the IP address). Copy eval.conf file (https://github.com/synereo/gloseval/blob/1.0/eval.conf) into a Docker host folder and will map this folder later on. Update the following key/value pair in eval.conf file appropirately:
 
 - Update with remote RabbitMQ node IP Address: `DSLCommLinkServerHost`, `DSLEvaluatorPreferredSupplierHost` and  `BFactoryCommLinkServerHost`
@@ -77,6 +79,7 @@ After updating ip addresses, run the following command in a sequence:
                  -p 8888:9876 --name backendNode \
                  -d livelygig/backend /usr/local/splicious/run.sh`
   ```
+  --->
 ## Accessing container:
 
 Visit the webpage `http://<docker_IP>:8888/agentui/agentui.html?demo=false` and if this doesn't work then find the mapping URL (ipaddress:port from Kitematic screen - select your container there i.e. backendNode). For example, you may see the access URL like 192.168.99.100:8888 then access the backend using http://192.168.99.100:8888/agentui/agentui.html?demo=false URL
