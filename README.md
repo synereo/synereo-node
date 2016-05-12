@@ -62,7 +62,7 @@ A full  node requires both MongoDB and RabbitMQ. It is advisable to use standalo
 
 After updating ip addresses, run the following command in a sequence: 
 
-    - docker run -it --name mdb1 -p 27017:27017 -d 
+    - docker run -it --name mdb1 -p 27017:27017 -d mongo
     - docker run --name rabbitmq1 -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 25672:25672 -d rabbitmq 
     - docker run -it --link mdb1:mongo --link rabbitmq1:rabbitmq -v <Mapped_Folder_WITH_EVAL.CONF>:/usr/local/splicious/config -e MONGODB_HOST=<IP_ADDRESS> -e MONGODB_PORT=27017 -e DEPLOYMENT_MODE=distributed -p 8888:9876 --name backendNode -d livelygig/backend /usr/local/splicious/run.sh
   
