@@ -20,7 +20,7 @@ ENV S_CMD splicious.sh
 ENV MONGODB_HOST 127.0.0.1
 ENV MONGODB_PORT 27017
 WORKDIR $W_DIR
-#ADD m2.tar.gz /root/
+ADD m2cup-jlex-configgy-prolog-pickling.tar.gz /root/
 
 # Install OpenJDK 8, Maven and other software
 RUN \
