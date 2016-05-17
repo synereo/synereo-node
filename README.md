@@ -36,7 +36,12 @@ Run the following commands
   Use "spliciousbkendimage" as image name in subsequent steps where image id is required. You can use image name of your choice but it must be all lowercase. 
  
 ## Running standalone node:
-Standalone mode requires running MongoDB and please replace the IP_ADDRESS (this address is accquired by docker and displays at starting of it i.e. 192.168.99.100 in Windows and Mac) appropriately below.
+Standalone mode requires running MongoDB and please replace the IP_ADDRESS (this address is accquired by docker and displays at starting of it i.e. 192.168.99.100 in Windows and Mac) appropriately below. If you are using pre-built image from Docker Hub i.e. livelygig/backend then replace the following field in docker run command below:
+    `replace IP_ADDRESS with: 192.168.99.100` and `replace spliciousbkendimage with: livelygig/backend` 
+
+For example, the command on step 3a for automated process becomes: 
+    
+    docker run -it -e MONGODB_HOST=192.168.99.100 -e MONGODB_PORT=27017 --name backendNode -p 8888:9876 -d livelygig/backend /usr/local/splicious/run.sh
 
 #### Running docker image - manual process: 
 
