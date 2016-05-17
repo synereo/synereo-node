@@ -1,7 +1,7 @@
 
 ## Backend Dockerfile
 
-Dockerfile for easily setting up a node and instructions are for building backend from the source code (This takes sometime to build i.e. around 20-40 minutes). These instructions are valid for first time use and once docker images are created and working then use `docker start ...` command. This build image contains older version of UI (i.e. Splicious UI) and newer version of Synnero UI is not yet ready for distritbution.
+Dockerfile for easily setting up a node and instructions are for building backend from the source code (This takes sometime to build i.e. around 20-40 minutes). These instructions are valid for first time use and once docker images are created and working then use `docker start ...` command. This build image contains older version of UI (i.e. Splicious UI) and newer version of Synereo UI which is not yet ready for distritbution.
 
 ## Prerequisites
  * Minimum 2GB RAM but 4 GB RAM is recommended for compling the source code.
