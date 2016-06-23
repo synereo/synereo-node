@@ -1,3 +1,12 @@
+findAppHome () {
+  local source="${BASH_SOURCE[0]}"
+  while [ -h "$source" ] ; do
+    local linked="$(readlink "$source")"
+    local dir="$( cd -P $(dirname "$source") && cd -P $(dirname "$linked") && pwd )"
+    source="$dir/$(basename "$linked")"
+  done
+  ( cd -P "$(dirname "$source")/.." && pwd )
+}
 #W_DIR=$HOME
 #W_DIR=/usr/local
 S_DIR=$W_DIR/splicious
@@ -40,7 +49,7 @@ rm -rf $S_DIR/libui/.svn && \
     fi 
   fi
   cd $W_DIR/ && \
-  chmod 755 $S_DIR/splicious.sh $S_DIR/bin/* $S_DIR/frontui.sh
+  chmod 755 $S_DIR/bin/*
 
 echo " deployer is exiting.......$?"
 exit $?
