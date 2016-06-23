@@ -9,10 +9,33 @@
 # Short-Description: Start/stop frontui server
 ### END INIT INFO
 
+realpath () {
+  (
+    TARGET_FILE="$1"
+    cd "$(dirname "$TARGET_FILE")"
+    TARGET_FILE=$(basename "$TARGET_FILE")
+    COUNT=0
+    while [ -L "$TARGET_FILE" -a $COUNT -lt 100 ]
+    do
+      TARGET_FILE=$(readlink "$TARGET_FILE")
+      cd "$(dirname "$TARGET_FILE")"
+      TARGET_FILE=$(basename "$TARGET_FILE")
+      COUNT=$(($COUNT + 1))
+    done
+    if [ "$TARGET_FILE" == "." -o "$TARGET_FILE" == ".." ]; then
+      cd "$TARGET_FILE"
+      TARGET_FILEPATH=
+    else
+      TARGET_FILEPATH=/$TARGET_FILE
+    fi
+    echo "$(pwd -P)/$TARGET_FILE"
+  )
+}
+
 DESC="Frontui"
 NAME=frontui
 DATE=`date +%Y%m%d%H%M%S`
-declare -r WORKINGDIR="$(pwd -P)/$(dirname $0)"
+declare -r WORKINGDIR="$(realpath "$(cd "$(realpath "$(dirname "$(realpath "$0")")")/.."; pwd -P)")"
 #WORKINGDIR=$W_DIR/splicious
 PIDFILE=$WORKINGDIR/logs/$NAME.pid
 LOGFILE=$WORKINGDIR/logs/$NAME-$DATE.log
