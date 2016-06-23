@@ -5,7 +5,7 @@ findAppHome () {
     local dir="$( cd -P $(dirname "$source") && cd -P $(dirname "$linked") && pwd )"
     source="$dir/$(basename "$linked")"
   done
-  ( cd -P "$(dirname "$source")/.." && pwd )
+  ( cd -P "$(dirname "$source")/" && pwd )
 }
 #declare -r W_DIR="$(findAppHome)"
 S_DIR=$W_DIR/splicious
