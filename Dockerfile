@@ -28,5 +28,5 @@ RUN \
 WORKDIR $W_DIR
 EXPOSE 9876 9000
 ENTRYPOINT ["/usr/local/entrypoint.sh"]
-CMD [ "/usr/local/splicious/splicious.sh" ]
-CMD [ "/usr/local/frontui/frontui.sh" ]
+CMD [ "/usr/local/splicious/bin/splicious" ]
+CMD [ "/usr/local/frontui/bin/frontui" ]
