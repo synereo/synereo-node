@@ -33,10 +33,10 @@ rm -rf $S_DIR/libui/.svn && \
       cd $S_DIR ; tar -xzvf scalabin.tar.gz ; rm -f scalabin.tar.gz
     fi 
     if [ ! -f "$S_DIR/splicious.sh" ]; then
-      wget https://github.com/synereo/dockernode/raw/precompiled/splicious.sh -O $S_DIR/splicious.sh
+      wget https://github.com/synereo/dockernode/raw/precompiled/splicious.sh -O $S_DIR/bin/splicious
     fi 
     if [ ! -f "$W_DIR/frontui.sh" ]; then
-      wget https://github.com/synereo/dockernode/raw/precompiled/frontui.sh -O $S_DIR/frontui.sh
+      wget https://github.com/synereo/dockernode/raw/precompiled/frontui.sh -O $S_DIR/bin/frontui
     fi 
   fi
   cd $W_DIR/ && \
