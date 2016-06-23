@@ -7,7 +7,7 @@ findAppHome () {
   done
   ( cd -P "$(dirname "$source")/.." && pwd )
 }
-#declare -r W_DIR="$(findScalaHome)"
+#declare -r W_DIR="$(findAppHome)"
 S_DIR=$W_DIR/splicious
 echo "$S_DIR"
 DOC=0
