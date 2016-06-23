@@ -10,6 +10,11 @@ ENV DB_HOST 127.0.0.1
 ENV DB_PORT 27017
 ENV W_DIR /usr/local
 
+ENV UBIN 0
+ENV AJAR agentservices-store-ia-1.9.5.jar
+ENV GJAR gloseval-0.1.jar
+ENV SJAR specialK-1.1.8.5.jar
+
 COPY precompiled.sh $W_DIR/
 COPY entrypoint.sh $W_DIR/
 
