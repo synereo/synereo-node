@@ -12,7 +12,8 @@
 DESC="Splicious"
 NAME=splicious
 DATE=`date +%Y%m%d%H%M%S`
-WORKINGDIR=$W_DIR/splicious
+declare -r WORKINGDIR="$(pwd -P)/$(dirname $0)"
+#WORKINGDIR=$W_DIR/splicious
 PIDFILE=$WORKINGDIR/logs/$NAME.pid
 LOGFILE=$WORKINGDIR/logs/$NAME-$DATE.log
 
