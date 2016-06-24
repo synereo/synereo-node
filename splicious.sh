@@ -35,7 +35,7 @@ realpath () {
 DESC="Splicious"
 NAME=splicious
 DATE=`date +%Y%m%d%H%M%S`
-declare -r WORKINGDIR="$(realpath "$(cd "$(realpath "$(dirname "$(realpath "$0")")")/.."; pwd -P)")"
+WORKINGDIR="$(realpath "$(cd "$(realpath "$(dirname "$(realpath "$0")")")/.."; pwd -P)")"
 #WORKINGDIR=$W_DIR/splicious
 PIDFILE=$WORKINGDIR/logs/$NAME.pid
 LOGFILE=$WORKINGDIR/logs/$NAME-$DATE.log
