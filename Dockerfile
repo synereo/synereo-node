@@ -11,10 +11,13 @@ ENV DB_PORT 27017
 ENV W_DIR /usr/local
 
 ENV UBIN 0
+
+ENV UBKBIN 0
 ENV AJAR agentservices-store-ia-1.9.5.jar
 ENV GJAR gloseval-0.1.jar
 ENV SJAR specialK-1.1.8.5.jar
 
+ENV UUIBIN 0
 ENV UIAJAR server.server-1.0.1-assets.jar
 ENV UIEJAR server.server-1.0.1-sans-externalized.jar
 ENV UISJAR sharedjvm.sharedjvm-0.1-SNAPSHOT.jar
