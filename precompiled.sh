@@ -68,10 +68,10 @@ ln -fs config/ui.conf ui.conf && \
       cd $S_DIR ; tar -xzvf scalabin.tar.gz ; rm -f scalabin.tar.gz
     fi 
     if [ ! -f "$S_DIR/bin/splicious" ]; then
-      wget https://github.com/synereo/dockernode/raw/precompiled/splicious.sh -O $S_DIR/bin/splicious
+      wget https://github.com/synereo/dockernode/raw/master/splicious.sh -O $S_DIR/bin/splicious
     fi 
     if [ ! -f "$S_DIR/bin/frontui" ]; then
-      wget https://github.com/synereo/dockernode/raw/precompiled/frontui.sh -O $S_DIR/bin/frontui
+      wget https://github.com/synereo/dockernode/raw/master/frontui.sh -O $S_DIR/bin/frontui
     fi 
   fi
 cd $W_DIR/ && \
