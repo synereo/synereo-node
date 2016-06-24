@@ -12,15 +12,31 @@ S_DIR=$W_DIR/splicious
 echo "$S_DIR"
 DOC=0
 mkdir -p $W_DIR/splicious $S_DIR/libui $S_DIR/lib $S_DIR/logs $S_DIR/config && \
-  \
+ 
 cd $S_DIR && \
-svn checkout --force https://github.com/synereo/compilednode/trunk/lib && \
-svn checkout --force https://github.com/synereo/compilednode/trunk/libui && \
-svn checkout --force https://github.com/synereo/gloseval/branches/1.0/scripts && \
-rm -rf $S_DIR/scripts/.svn && \
-svn checkout --force https://github.com/synereo/agent-service-ati-ia/branches/1.0/AgentServices-Store/scripts && \
-rm -rf $S_DIR/scripts/.svn && \
-svn checkout --force https://github.com/synereo/specialk/trunk/scripts && \
+if [ ! -d $S_DIR/lib ]; then
+  svn checkout --force https://github.com/synereo/compilednode/trunk/lib 
+fi
+if [ ! -d $S_DIR/libui ]; then
+  svn checkout --force https://github.com/synereo/compilednode/trunk/libui 
+fi
+if [ ! -d $S_DIR/scripts ]; then
+  svn checkout --force https://github.com/synereo/gloseval/branches/1.0/scripts 
+  rm -rf $S_DIR/scripts/.svn 
+  svn checkout --force https://github.com/synereo/agent-service-ati-ia/branches/1.0/AgentServices-Store/scripts 
+  rm -rf $S_DIR/scripts/.svn 
+  svn checkout --force https://github.com/synereo/specialk/trunk/scripts 
+fi 
+
+############################## Update jar files
+LIB_DIR=$S_DIR/lib
+AJAR=agentservices-store-ia-1.9.5.jar
+GJAR=gloseval-0.1.jar
+SJAR=specialK-1.1.8.5.jar
+wget https://github.com/synereo/compilednode/raw/master/lib/$AJAR -O $LIB_DIR/$AJAR
+wget https://github.com/synereo/compilednode/raw/master/lib/$GJAR -O $LIB_DIR/$GJAR
+wget https://github.com/synereo/compilednode/raw/master/lib/$SJAR -O $LIB_DIR/$SJAR
+##############################
 wget https://github.com/synereo/gloseval/raw/1.0/eval.conf -O $S_DIR/config/eval.conf && \
 wget https://github.com/synereo/gloseval/raw/1.0/log.properties -O $S_DIR/log.properties && \
 wget https://github.com/LivelyGig/ProductWebUI/raw/master/server/src/main/resources/application.conf -O $S_DIR/config/ui.conf && \
