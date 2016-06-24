@@ -17,11 +17,6 @@ Dockerfile for easily setting up a node and instructions are for building backen
     `docker pull mongo` then 
     `docker run --name mdb1 -p 27017:27017 -d mongo`
 
- - rabbitmq running version: 3.0.2 erlang version : 5.9.1 (15B03) (http://www.rabbitmq.com/) but works with the latest version by editing rabbitmq.config file (add this entry [{rabbit, [{loopback\_users, []}]}] ). Follow the instruction below if want to run Docker image. (https://hub.docker.com/_/rabbitmq/) 
-
-    `docker pull rabbitmq` then 
-    `docker run --name rabbitmq1 -p 4369:4369 -p 5671:5671 -p 5672:5672 -p 25672:25672 -d rabbitmq`
-
 ## Source files
 Download files in a directory of your choice or use command as below to build Docker image (make sure docker is running and available). Windows users, run "git config --global core.autocrlf false" command before running the git clone command otherwise container may fail to execute properly.
 
