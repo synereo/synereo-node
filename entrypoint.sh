@@ -2,6 +2,7 @@
 
 EVAL_FILE=$W_DIR/splicious/config/eval.conf
 LIB_DIR=$W_DIR/splicious/lib
+LIBUI_DIR=$W_DIR/splicious/libui
 
 #ENV NODEADMINEMAIL admin@localhost
 #ENV NODEADMINPASS a
@@ -25,6 +26,15 @@ if [ "$UBIN" == "1" ]; then
   wget https://github.com/synereo/compilednode/raw/master/lib/$AJAR -O $LIB_DIR/$AJAR
   wget https://github.com/synereo/compilednode/raw/master/lib/$GJAR -O $LIB_DIR/$GJAR
   wget https://github.com/synereo/compilednode/raw/master/lib/$SJAR -O $LIB_DIR/$SJAR
+fi
+#UUIBIN= //Update binaries set 1 for update and 0 if not
+#UIAJAR=server.server-1.0.1-assets.jar
+#UIEJAR=server.server-1.0.1-sans-externalized.jar
+#UISJAR=sharedjvm.sharedjvm-0.1-SNAPSHOT.jar
+if [ "$UUIBIN" == "1" ]; then
+  wget https://github.com/synereo/compilednode/raw/master/libui/$UIAJAR -O $LIBUI_DIR/$UIAJAR
+  wget https://github.com/synereo/compilednode/raw/master/libui/$UIEJAR -O $LIBUI_DIR/$UIEJAR
+  wget https://github.com/synereo/compilednode/raw/master/libui/$UISJAR -O $LIBUI_DIR/$UISJAR
 fi
 
 exec "$@"
