@@ -9,19 +9,20 @@
 #}
 #declare -r W_DIR="$(findAppHome)"
 S_DIR=$W_DIR/splicious
-echo "$S_DIR"
 DOC=0
-mkdir -p $W_DIR/splicious $S_DIR/libui $S_DIR/lib $S_DIR/logs $S_DIR/config && \
+git clone -b master https://github.com/synereo/compilednode.git $S_DIR && \
+#mkdir -p $W_DIR/splicious && \
+mkdir -p $S_DIR/libui $S_DIR/lib $S_DIR/logs $S_DIR/config && \
  
 cd $S_DIR && \
-if [ ! -d $S_DIR/lib ]; then
-  svn checkout --force https://github.com/synereo/compilednode/trunk/lib 
-  rm -rf $S_DIR/lib/.svn
-fi
-if [ ! -d $S_DIR/libui ]; then
-  svn checkout --force https://github.com/synereo/compilednode/trunk/libui 
-  rm -rf $S_DIR/libui/.svn
-fi
+#if [ ! -d $S_DIR/lib ]; then
+#  svn checkout --force https://github.com/synereo/compilednode/trunk/lib 
+#  rm -rf $S_DIR/lib/.svn
+#fi
+#if [ ! -d $S_DIR/libui ]; then
+#  svn checkout --force https://github.com/synereo/compilednode/trunk/libui 
+#  rm -rf $S_DIR/libui/.svn
+#fi
 if [ ! -d $S_DIR/scripts ]; then
   svn checkout --force https://github.com/synereo/gloseval/branches/1.0/scripts 
   rm -rf $S_DIR/scripts/.svn 
