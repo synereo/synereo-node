@@ -20,13 +20,13 @@ Dockerfile for easily setting up a node and instructions are for building backen
 ## Source files
 Download files in a directory of your choice or use command as below to build Docker image (make sure docker is running and available). Windows users, run "git config --global core.autocrlf false" command before running the git clone command otherwise container may fail to execute properly.
 
-    1. git clone https://github.com/synereo/dockernode.git SynereoNode
+    1. git clone https://github.com/synereo/dockernode.git SNode
 
 ## Build docker image using: 
 Run the following commands
 
-    2a. cd SynereoNode
-    2b. docker build -t synereonode . 
+    2a. cd SNode
+    2b. docker build -t snode . 
 
   Use "synereonode" as image name in subsequent steps where image id is required. You can use image name of your choice but it must be all lowercase. 
  
@@ -41,7 +41,7 @@ For example, the command on step 3a for automated process becomes:
 #### Running docker image - manual process: 
 
     3a. docker run -it -e DB_HOST=<IP_ADDRESS> -e \
-                   --name sn1 -p 8080:9000 -p 8888:9876 synereonode /bin/bash
+                   --name sn1 -p 8080:9000 -p 8888:9876 snode /bin/bash
   
 At the # prompt, run the commands below
     
@@ -62,7 +62,7 @@ The default user name/password is admin@localhost/a and can be changed in /usr/l
                  -e DB_HOST=192.168.99.100 \
                  -p 8080:9000 \
                  -p 8888:9876 --name backendNode \
-                 -d synereonode /usr/local/splicious/bin/splicious
+                 -d snode /usr/local/splicious/bin/splicious
   ```
 See screenshot 
 https://drive.google.com/open?id=0B1NrzDY6kx1JTzdPNVFlU19xekk. To see log files, go to /usr/local/splicious/logs folder after login into the container.
