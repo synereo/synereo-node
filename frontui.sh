@@ -32,6 +32,7 @@ realpath () {
   )
 }
 
+JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
 DESC="Frontui"
 NAME=frontui
 DATE=`date +%Y%m%d%H%M%S`
@@ -46,7 +47,7 @@ fi
 
 #if [ "$#" -ne 1 ] ; then
 if [ $# -eq 0 ]; then
-  cd $WORKINGDIR ; java -cp "libui/*" -Dhttp.port=9000 -Dconfig.file=ui.conf -Dplay.crypto.secret="s3cr3t" play.core.server.ProdServerStart 
+  cd $WORKINGDIR ; $JAVA_HOME/bin/java -cp "libui/*" -Dhttp.port=9000 -Dconfig.file=ui.conf -Dplay.crypto.secret="s3cr3t" play.core.server.ProdServerStart 
 fi
 
 case "$1" in
@@ -54,7 +55,7 @@ case "$1" in
         echo "Starting $DESC..."
         if [ ! -f $PIDFILE ]; then
             cd $WORKINGDIR
-            nohup java -cp "libui/*" -Dhttp.port=9000 -Dconfig.file=ui.conf -Dplay.crypto.secret="s3cr3t" play.core.server.ProdServerStart < /dev/null > $LOGFILE 2>&1 &
+            nohup $JAVA_HOME/bin/java -cp "libui/*" -Dhttp.port=9000 -Dconfig.file=ui.conf -Dplay.crypto.secret="s3cr3t" play.core.server.ProdServerStart < /dev/null > $LOGFILE 2>&1 &
             echo $! > $PIDFILE
             echo "$DESC started"
         else
@@ -82,7 +83,7 @@ case "$1" in
  
             echo "Starting $DESC..."
             cd $WORKINGDIR
-            nohup java -cp "libui/*" -Dhttp.port=9000 -Dconfig.file=ui.conf -Dplay.crypto.secret="s3cr3t" play.core.server.ProdServerStart < /dev/null > $LOGFILE 2>&1 &
+            nohup $JAVA_HOME/bin/java -cp "libui/*" -Dhttp.port=9000 -Dconfig.file=ui.conf -Dplay.crypto.secret="s3cr3t" play.core.server.ProdServerStart < /dev/null > $LOGFILE 2>&1 &
             echo $! > $PIDFILE
             echo "$DESC started"
         else
