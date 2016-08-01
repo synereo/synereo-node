@@ -84,7 +84,7 @@ RUN \
     cd $S_DIR/
 
 ADD agentui.tar.gz $S_DIR/
-ADD sclabin.tar.gz $S_DIR/
+ADD scalabin.tar.gz $S_DIR/
 COPY splicious.sh $S_DIR/
 COPY entrypoint.sh $W_DIR/
 
