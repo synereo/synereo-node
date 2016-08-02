@@ -12,10 +12,9 @@ This process may take around 10-30 minutes to download around 750 MB of data.
 ## Prerequisites
  * Minimum 2GB RAM but 4 GB RAM is recommended.
  * Basic knowledge of Docker. Docker installed (https://www.docker.com/) and running Docker process(es). 
- * Other necessary softwares needed to run the node are part of the Docker image (i.e. MongoDB, RabbitMQ and many more)
-
+ 
 ## Source files
-Download docker [configuration file](https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile) in a directory of your choice (we called the directory "snodedir") and name it "Dockerfile"
+Download docker [configuration file](https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile) in a directory of your choice (we called the directory "snodedir") and name it "Dockerfile". On Docker command window you can use the following command to download `curl -sL https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile -o Dockerfile`
 
 ## Build docker image using 
 Run the following commands:
