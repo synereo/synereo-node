@@ -57,8 +57,10 @@ RUN \
     && rmq_zip_url=https://github.com/rabbitmq/rabbitmq-server/releases/download \
     && rmq_zip_url=${rmq_zip_url}/rabbitmq_v$(echo $RABBITMQ_VERSION | tr '.' '_') \
     && rmq_zip_url=${rmq_zip_url}/rabbitmq-server-generic-unix-${RABBITMQ_VERSION}.tar.xz \
-    && curl -Lv -o /srv/rmq.tar.xz $rmq_zip_url | tar xf - -C /srv \
-#    && tar -xvf rmq.tar.xz && rm -f rmq.tar.xz \
+    && echo "Rabbit URL: $rmq_zip_url" \
+#    && curl -Lv -o /srv/rmq.tar.xz $rmq_zip_url | tar xf - -C /srv \
+    && curl -Lv -o /srv/rmq.tar.xz $rmq_zip_url \
+    && tar -xvf rmq.tar.xz && rm -f rmq.tar.xz \
     && touch /srv/rabbitmq_server-${RABBITMQ_VERSION}/etc/rabbitmq/enabled_plugins \
     && curl -L https://raw.githubusercontent.com/synereo/dockernode/single/rabbitssl.config -o /srv/rabbitmq_server-${RABBITMQ_VERSION}/etc/rabbitmq/ssl.config \
     && curl -L https://raw.githubusercontent.com/synereo/dockernode/single/rabbitstandard.config -o /srv/rabbitmq_server-${RABBITMQ_VERSION}/etc/rabbitmq/standard.config \
