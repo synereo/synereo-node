@@ -14,10 +14,10 @@ This process may take around 10-30 minutes to download around 750 MB of data.
  * Basic knowledge of Docker. Docker installed (https://www.docker.com/) and running Docker process(es). 
  
 ## Source files
-Download docker [configuration file](https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile) in a directory of your choice (we called the directory "snodedir") and name it "Dockerfile". On Docker command window you can use the following command to download `curl -sL https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile -o Dockerfile`
+Download docker [configuration file](https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile) in a directory of your choice (we called the directory "snodedir") and name it "Dockerfile". On Docker command window, you can use the following command to download `curl -sL https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile -o Dockerfile`
 
 ## Build docker image using 
-Run the following commands:
+Run the following commands (The download commmand above should be used after running step 1):
 
     1. cd snodedir
 
