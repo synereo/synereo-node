@@ -20,11 +20,6 @@ ENV ENABLED_PLUGINS_FILE=/srv/rabbitmq_server-${RABBITMQ_VERSION}/etc/rabbitmq/e
 ENV RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq 
 ENV PATH=$PATH:$RABBITMQ_HOME/sbin
 
-#COPY 	supervisord.conf /etc/supervisord.conf 
-#COPY    rabbitssl.config /srv/rabbitmq_server-${RABBITMQ_VERSION}/etc/rabbitmq/
-#COPY    rabbitstandard.config /srv/rabbitmq_server-${RABBITMQ_VERSION}/etc/rabbitmq/
-#COPY    rabbit.sh /usr/bin/rabbitwrapper
-
 # Install OpenJDK 8, Maven, SBT, NodeJS and other software
 RUN \
     echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
@@ -38,12 +33,12 @@ RUN \
     && curl -L https://raw.githubusercontent.com/synereo/dockernode/single/supervisord.conf -o /etc/supervisord.conf \
     && curl -L https://raw.githubusercontent.com/mvertes/dosu/0.1.0/dosu -o /sbin/dosu \
     && chmod +x /sbin/dosu \
-    && curl -sL http://apache.claz.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar -xzf - -C /usr/lib \
+#    && curl -sL http://apache.claz.org/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz | tar -xzf - -C /usr/lib \
     && curl -sL https://dl.bintray.com/sbt/native-packages/sbt/0.13.12/sbt-0.13.12.tgz | tar xzf -  -C /usr/lib \
     && cd /usr/bin \
     && ln -s ../lib/jvm/java-1.8-openjdk/bin/javac /usr/bin/javac \
     && ln -s ../lib/jvm/java-1.8-openjdk/bin/jar /usr/bin/jar \
-    && ln -s ../lib/apache-maven-3.3.9/bin/mvn /usr/bin/mvn \
+#    && ln -s ../lib/apache-maven-3.3.9/bin/mvn /usr/bin/mvn \
     && ln -s ../lib/sbt/bin/sbt /usr/bin/sbt \
     && rm -rf /var/cache/apk/* \
 # Work around https://bugs.alpinelinux.org/issues/4128 for OpenJDK7
@@ -78,7 +73,7 @@ RUN \
     && ln -sf $RABBITMQ_HOME /rabbitmq \
 ## Splicious     
     && cd $W_DIR \
-    && curl -L https://github.com/n10n/DockerNode/raw/precompiled/precompiled.sh -o $W_DIR/precompiled.sh \
+    && curl -sL https://github.com/synereo/dockernode/raw/single/precompiled.sh -o $W_DIR/precompiled.sh \
     && chmod 755 $W_DIR/precompiled.sh \
     && ./precompiled.sh 
     #&& ./reducesize.sh #TO BE REMOVED
