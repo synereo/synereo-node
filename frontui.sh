@@ -41,6 +41,9 @@ WORKINGDIR="$(realpath "$(cd "$(realpath "$(dirname "$(realpath "$0")")")/.."; p
 PIDFILE=$WORKINGDIR/logs/$NAME.pid
 LOGFILE=$WORKINGDIR/logs/$NAME-$DATE.log
 
+# RUNNING_PID removing needed if frontui is not shutdown gracefully
+rm $WORKINGDIR/RUNNING_PID
+
 if [ ! -d $WORKINGDIR/logs ]; then
    mkdir $WORKINGDIR/logs
 fi
