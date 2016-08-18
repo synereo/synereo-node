@@ -85,6 +85,6 @@ WORKDIR $W_DIR
 VOLUME /data/db 
 VOLUME /var/lib/rabbitmq
 
-EXPOSE 9876 9000 27017 5671 5672 15672 15671
+EXPOSE 8567 9678 9876 9000 27017 5671 5672 15672 15671
 
 ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
