@@ -18,7 +18,7 @@ This process may take around 10-30 minutes to download around 750 MB of data.
 ### Getting source files
 Download docker [configuration file](https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile) in a directory of your choice (we called the directory "snodedir") and name it "Dockerfile" (Docker required to name the file). Or run the following commands on the prompt you get after running the Docker terminal:
 
-    1. cd snodedir (not exist then create one using `mkdir snodedir`)
+    1. cd snodedir (if do not exist then create one using `mkdir snodedir`)
     2. curl -sL https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile -o Dockerfile
 
 ### Build docker image using 
