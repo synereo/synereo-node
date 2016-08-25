@@ -10,8 +10,8 @@ This docker image contains both older and newer version of UIs (i.e. older, Spli
 This process may take around 10-30 minutes to download around 750 MB of data. 
 
 ## Prerequisites
- * Minimum 2GB RAM but 4 GB RAM is recommended.
- * Basic knowledge of Docker. Docker installed (https://www.docker.com/) and running Docker process(es). 
+ * Minimum 4GB RAM but 6 GB RAM is recommended. (Don't work properly with Windows 7 home version)
+ * Docker installed (https://www.docker.com/) and running Docker process(es). Basic knowledge of Docker and executing various Docker commands. 
  
 ## Steps
 
