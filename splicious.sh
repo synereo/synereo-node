@@ -52,8 +52,9 @@ case "$1" in
         echo "Starting $DESC..."
         if [ ! -f $PIDFILE ]; then
             cd $WORKINGDIR
-            nohup java -cp "lib/*" com.biosimilarity.evaluator.spray.Boot \
-                       -unchecked -deprecation -encoding utf8 -usejavacp < /dev/null > $LOGFILE 2>&1 &
+#            nohup java -cp "lib/*" com.biosimilarity.evaluator.spray.Boot \
+#                       -unchecked -deprecation -encoding utf8 -usejavacp < /dev/null > $LOGFILE 2>&1 &
+            nohup java -cp "lib/*" com.biosimilarity.evaluator.spray.Boot < /dev/null > $LOGFILE 2>&1 &
             echo $! > $PIDFILE
             echo "$DESC started"
         else
