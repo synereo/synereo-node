@@ -39,8 +39,9 @@ ln -fs config/eval.conf eval.conf && \
   \
   if [ 0 -eq $DOC ]; then
     if [ ! -f "$S_DIR/bin/scala" ]; then
-      wget https://raw.githubusercontent.com/synereo/dockernode/master/scalabin.tar.gz -O $S_DIR/scalabin.tar.gz
-      cd $S_DIR ; tar -xzvf scalabin.tar.gz ; rm -f scalabin.tar.gz
+#      wget https://raw.githubusercontent.com/synereo/dockernode/master/scalabin.tar.gz -O $S_DIR/scalabin.tar.gz
+#      cd $S_DIR ; tar -xzvf scalabin.tar.gz ; rm -f scalabin.tar.gz
+      wget https://raw.githubusercontent.com/synereo/dockernode/master/scalabin.tar.gz -O - |tar -xzvf - -C $S_DIR/
     fi 
     if [ ! -f "$S_DIR/bin/splicious" ]; then
       wget https://raw.githubusercontent.com/synereo/dockernode/master/splicious.sh -O $S_DIR/bin/splicious
