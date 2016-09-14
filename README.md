@@ -1,4 +1,10 @@
 
+[WARNING]
+This software is EXPERIMENTAL software for **TESTING** purpose only. 
+
+[CAUTION]
+This is pre-release (alpha version) software and any feature may change without notice.
+
 ## Synereo Node Dockerfile
 
 Help to set up a standalone node. These instructions are valid for first time use only and once docker image is created and working then use `docker start sn1` command in sebsequent run. 
