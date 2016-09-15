@@ -6,6 +6,9 @@ if [ -z "$W_DIR" ]; then
     exit 1
 fi
 
+B_TAR=wget https://github.com/synereo/synereo/releases/download/synereo0.72btc/synereo0.72btc.tgz
+U_TAR=https://github.com/LivelyGig/ProductWebUI/releases/download/synereo0.72btc/synereo0.72btc.tar.gz
+
 S_DIR=$W_DIR/splicious
 mkdir -p $S_DIR/client $S_DIR/config $S_DIR/logs $S_DIR/resources $S_DIR/scripts && \
 
@@ -13,10 +16,10 @@ DOC=0
 
 #if [ ! -d $S_DIR ]; then
 if [ -d $S_DIR ]; then
-  wget https://github.com/synereo/synereo/releases/download/synereo0.72/synereo0.72.tgz -O - | tar -xzvf - -C $S_DIR/scripts 
+  wget $B_TAR -O - | tar -xzvf - -C $S_DIR/scripts 
   mv $S_DIR/scripts/gloseval-2.0-*/bin $S_DIR/scripts/gloseval-2.0-*/lib $S_DIR/
   rm -rf $S_DIR/scripts/gloseval-2.0-*
-  wget https://github.com/LivelyGig/ProductWebUI/releases/download/synereo0.72/synereo0.72.tar.gz -O - | tar -xzvf - -C $S_DIR/client
+  wget $U_TAR -O - | tar -xzvf - -C $S_DIR/client
 fi
 
 cd $S_DIR && \
