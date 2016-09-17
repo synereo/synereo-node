@@ -6,8 +6,10 @@ if [ -z "$W_DIR" ]; then
     exit 1
 fi
 
-B_TAR=https://github.com/synereo/synereo/releases/download/synereo0.72btc/synereo0.72btc.tgz
-U_TAR=https://github.com/LivelyGig/ProductWebUI/releases/download/synereo0.72btc/synereo0.72btc.tar.gz
+#B_TAR=https://github.com/synereo/synereo/releases/download/synereo0.72btc/synereo0.72btc.tgz
+B_TAR=https://github.com/synereo/synereo/releases/download/synereo0.73amp/synereo073amp.tgz
+#U_TAR=https://github.com/LivelyGig/ProductWebUI/releases/download/synereo0.72btc/synereo0.72btc.tar.gz
+U_TAR=https://github.com/LivelyGig/ProductWebUI/releases/download/synereo0.73amp/ui0.73amp.tar.gz
 
 S_DIR=$W_DIR/splicious
 mkdir -p $S_DIR/client $S_DIR/config $S_DIR/logs $S_DIR/resources $S_DIR/scripts && \
