@@ -6,10 +6,6 @@
 This is an **experimental**, pre-release software and should be used **for testing purposes only**. While the software is in pre-release phase, there is a **high likelihood of data loss** and **features will change** without notice.
 
 ## Prerequisites
- * Minimum 4GB RAM but 6 GB RAM is recommended. 
- * Docker installed (https://www.docker.com/) and running Docker process(es). Basic knowledge of Docker and executing various Docker commands. 
- * 
- 
 * Basic knowledge of [Docker](https://www.docker.com)
   * New users should start [here](https://docs.docker.com/engine/understanding-docker/)
 * A machine capable of running [Docker](https://www.docker.com), with at least 4 GB RAM (> 8 GB recommended)
