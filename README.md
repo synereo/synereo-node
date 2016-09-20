@@ -53,6 +53,8 @@ Username|Password
 --------|--------
 admin@localhost|a
 
+After successful login, there may be a delay before you can see blockchain wallet address in "About" screen.
+
 **NOTE**: This username and password can be changed by editing the `eval.conf` file inside the running container. Information on how to do this will be made available shortly.
 
 ## Stopping the Container
