@@ -1,9 +1,22 @@
 #! /bin/bash
 
+findAppHome () {
+  local source="${BASH_SOURCE[0]}"
+  while [ -h "$source" ] ; do
+    local linked="$(readlink "$source")"
+    local dir="$( cd -P $(dirname "$source") && cd -P $(dirname "$linked") && pwd )"
+    source="$dir/$(basename "$linked")"
+  done
+  ( cd -P "$(dirname "$source")/" && pwd )
+}
+
+echo "Running from directory: $(findAppHome)"
+
 #W_DIR="/usr/local"
 if [ -z "$W_DIR" ]; then
-    echo "W_DIR not set, exiting..."
-    exit 1
+    echo "W_DIR not set and setting up to $(findAppHome)"
+    #exit 1
+    W_DIR="$(findAppHome)"
 fi
 
 #B_TAR=https://github.com/synereo/synereo/releases/download/synereo0.72btc/synereo0.72btc.tgz
