@@ -17,6 +17,8 @@ This is an **experimental**, pre-release software and should be used **for testi
 
 ## Installation
 
+Please make sure Docker is running and open command prompt for Docker.
+
 ### Build docker image using 
 ```
 $ docker build -t synereo-node github.com/synereo/dockernode
