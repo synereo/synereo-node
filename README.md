@@ -21,7 +21,7 @@ Please make sure Docker is running and open command prompt for Docker.
 
 ### Build docker image using 
 ```
-$ docker build -t synereo-node github.com/synereo/dockernode
+$ docker build -t synereo-node https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile
 ```
 
 The build process will take 10-30 minutes depending on your machine and network connection. It will download approximately  750 MB of data.
