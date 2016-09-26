@@ -36,7 +36,7 @@ $ docker run -itd -p 443:9876 -h mynodehost --dns 8.8.8.8 --name synereo-node-01
 
 To access the application, you must first know the IP address of your running container. On Mac machines (with the latest version of Docker), the IP address of your running container will be `127.0.0.1` (aka `localhost`).
 
-On Linux and Windows machines, you can get the IP address of your running container with the following command (By default, the IP Address in Linux is 172.17.0.1 and 192.68.99.100 for Windows):
+On Linux and Windows machines, you can get the IP address of your running container with the following command (By default, the IP Address in Linux is 172.17.0.1 and 192.168.99.100 for Windows):
 
 ```
 $ docker inspect --format '{{ .NetworkSettings.IPAddress }}' synereo-node-01
