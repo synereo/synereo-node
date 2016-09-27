@@ -17,7 +17,7 @@ This is an **experimental**, pre-release software and should be used **for testi
 
 ## Installation
 
-Please make sure Docker is running and open command prompt for Docker ("CLI" in Windows. Kitematic -> "Docker CLI" lower left hand corner).
+Please make sure Docker is running and open command prompt for Docker ("CLI", Kitematic -> "Docker CLI" lower left hand corner).
 
 ### Build docker image using 
 ```
