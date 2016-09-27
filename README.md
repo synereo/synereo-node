@@ -11,9 +11,9 @@ This is an **experimental**, pre-release software and should be used **for testi
 * A machine capable of running [Docker](https://www.docker.com), with at least 4 GB RAM (> 8 GB recommended)
   * For Linux users, installation information is [available here](https://docs.docker.com/engine/installation/linux)
   * For Mac users, system requirements and installation information is [available here](https://docs.docker.com/docker-for-mac/)
-  * For Windows users, system requirements and installation information is [available here](https://docs.docker.com/docker-for-windows/)
+  * For Windows users, system requirements and installation information is [available here](https://docs.docker.com/docker-for-windows/) or you can try using Docker Tool Box [available here](https://www.docker.com/products/docker-toolbox) (This includes Kitematic, UI interface to mange images and containers)
  
-  [CAUTION] Based on our experience, Docker may not perform as indented on Windows 7 home version machines
+  [CAUTION] Based on our experience, Docker may not perform as intented on Windows 7 home version machines
 
 ## Installation
 
