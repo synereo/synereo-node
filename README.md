@@ -40,8 +40,8 @@ OS|Docker Version |Default IP
 --------|--------|--------
 Mac OSX| Prior 1.12 alpha | 192.168.99.100
 Mac OSX| 1.12 alpha | 127.0.0.1 or localhost
-Windows 8/8.1| - | 192.168.99.100
-Windows 10| - | 192.168.99.100
+Windows 8/8.1| - | 192.168.99.100 or localhost
+Windows 10| - | 192.168.99.100 or locahost
 Linux | - | 172.17.0.1
 
 
