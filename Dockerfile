@@ -16,7 +16,10 @@ ENV RABBITMQ_MNESIA_BASE=/var/lib/rabbitmq
 ENV PATH=$PATH:$RABBITMQ_HOME/sbin
 
 RUN \
-
+#    apk add ca-certificates \
+#    && update-ca-certificates \
+#    && mv /usr/lib/jvm/java-1.7-openjdk/jre/lib/security/cacerts /usr/lib/jvm/java-1.7-openjdk/jre/lib/security/cacerts.org \
+#    && ln -s /etc/ssl/certs/java/cacerts /usr/lib/jvm/java-1.7-openjdk/jre/lib/security/cacerts \
     curl -L https://raw.githubusercontent.com/synereo/dockernode/single/supervisord.conf -o /etc/supervisord.conf \
 ## Splicious     
     && cd $W_DIR \
