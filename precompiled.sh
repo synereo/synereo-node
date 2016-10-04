@@ -49,7 +49,8 @@ if [ -d $S_DIR/scripts ]; then
   rm -rf $S_DIR/scripts/.svn
 fi 
 \
-wget https://raw.githubusercontent.com/synereo/synereo/staging/gloseval/eval.conf -O $S_DIR/config/eval.conf && \
+wget https://github.com/synereo/synereo/releases/download/synereo0.73amp/eval.conf -O $S_DIR/config/eval.conf && \
+#wget https://raw.githubusercontent.com/synereo/synereo/staging/gloseval/eval.conf -O $S_DIR/config/eval.conf && \
 wget https://raw.githubusercontent.com/synereo/synereo/staging/gloseval/log.properties -O $S_DIR/log.properties && \
 \
 cd $S_DIR && \
