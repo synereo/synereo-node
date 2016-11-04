@@ -12,24 +12,24 @@ This is an **experimental**, pre-release software and should be used **for testi
   * For Linux users, installation information is [available here](https://docs.docker.com/engine/installation/linux)
   * For Mac users, system requirements and installation information is [available here](https://docs.docker.com/docker-for-mac/)
   * For Windows users, system requirements and installation information is [available here](https://docs.docker.com/docker-for-windows/) or you can try using Docker Tool Box [available here](https://www.docker.com/products/docker-toolbox) (This includes Kitematic, UI interface to mange images and containers)
- 
+
   [CAUTION] Based on our experience, Docker may not perform as intented on Windows 7 home version machines
 
 ## Installation
 
 Please make sure Docker is running and open command prompt for Docker ("CLI", Kitematic -> "Docker CLI" lower left hand corner).
 
-### Build docker image using 
+### Build docker image using
 ```
-$ docker build -t synereo-node https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile
+# docker build -t synereo-node https://raw.githubusercontent.com/synereo/dockernode/single/Dockerfile
 ```
 
 The build process will take 10-30 minutes depending on your machine and network connection. It will download approximately  750 MB of data.
 
-### Running standalone node 
+### Running standalone node
 After the build completes, run the following command (First time usage) to create a Docker container named `synereo-node-01`:
 ```
-$ docker run -itd -p 443:9876 -h mynodehost --dns 8.8.8.8 --name synereo-node-01 synereo-node
+# docker run -itd -p 443:9876 -h mynodehost --dns 8.8.8.8 --name synereo-node-01 synereo-node
 ```
 
 ## Accessing the Synereo Social Platform
@@ -49,7 +49,7 @@ Linux | - | 172.17.0.1
 On Linux and Windows machines, you can get the IP address of your running container with the following command:
 
 ```
-$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' synereo-node-01
+# docker inspect --format '{{ .NetworkSettings.IPAddress }}' synereo-node-01
 ```
 
 You can then access the application with your web browser at:
@@ -74,7 +74,7 @@ After successful login, there may be a delay before you can see blockchain walle
 To stop the container:
 
 ```
-$ docker stop synereo-node-01
+# docker stop synereo-node-01
 ```
 
 ## General Usage
@@ -82,7 +82,7 @@ $ docker stop synereo-node-01
 To restart the container:
 
 ```
-$ docker start synereo-node-01
+# docker start synereo-node-01
 ```
 
 ## Further Help
